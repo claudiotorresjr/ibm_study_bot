@@ -1,0 +1,68 @@
+{
+    "Exercício 1": {
+        "description": "Dada uma coleção de números inteiros positivos terminada por 0, imprimir seus quadrados.",
+        "dificuldade": "Fácil",
+        "exemplo": "Entrada:\n1 2 3 4 5 0\nSaída:\n1 4 9 16 25",
+        "dica": [
+            "Será lida uma sequência de números. Portanto haverá loop.",
+            "O critério de parada do loop é a terminação da sequência. Nesse caso, ao chegar no 0, o loop é quebrado.",
+            "Enquanto o número lido não for 0, calcula seu quadrado e mostra na tela.",
+            "O quadrado de um número N é dado por N*N"
+        ]
+    },
+    "Exercício 2": {
+        "description": "Dado n, calcular a soma dos n primeiros números inteiros positivos.",
+        "dificuldade": "Fácil",
+        "exemplo": "Entrada: 5\nSaída: 15 (1+2+3+4+5)",
+        "dica": [
+            "Será lido um número e, a partir dele, encontrar todos os números inteiros positivos até ele. Portanto haverá loop.",
+            "Se for dado o número 5, deve-se percorrer os números 1, 2, 3, 4 e 5. Nesse caso, ao chegar no número lido, o loop quebra.",
+            "O programa irá ter valores acumulados. O número no loop atual se soma ao resultado da soma anterior. Portanto uma variável que acumule valores deve existir."
+        ]
+    },
+    "Exercício 3": {
+        "description": "Dado n, imprimir os n primeiros inteiros positivos ímpares.",
+        "dificuldade": "Fácil",
+        "exemplo": "Entrada: 4\nSaída: 1 3 5 7",
+        "dica": [
+            "Será lido um número n e, a partir dele, encontrar n números inteiros positivos ímpares. Portanto haverá loop.",
+            "Se for dado o número 4, deve-se percorrer os números a partir de 1 até encontrar o 4º número ímpar. Nesse caso, ao chegar no 4º número ímpar, o loop quebra.",
+            "Um número é dado como ímpar, se sua divisão por 2 der resto diferente de 0.",
+            "Utilize o operador mod."
+        ]
+    },
+    "Exercício 4": {
+        "description": "Dados um inteiro x e um inteiro não negativo n, calcular x^n (x elevado a n). Não utilize funções matemáticas já implementadas!!",
+        "dificuldade": "Fácil",
+        "exemplo": "Entrada: 2 4\nSaída: 16 (2^4 = 2*2*2*2 = 16)",
+        "dica": [
+            "Por ser exponênciação, sabemos que o número da base será multiplicado por ele mesmo n vezes. Portanto haverá loop.",
+            "O critério de parada é a quantidade de vezes que o número será multiplicado por ele mesmo. 2^4 = 2*2*2*2. Portanto o loop quebra quando após a 4ª multiplicação sucessiva do número 2.",
+            "Um número é dado como ímpar, se sua divisão por 2 der resto diferente de 0."
+        ]
+    },
+    "Exercício 5": {
+        "description": "Uma loja de discos anota diariamente durante o mês de março a quantidade de discos vendidos. Determinar em que dia desse mês ocorreu a maior venda e qual foi a quantidade de discos vendida nesse dia.",
+        "dificuldade": "Médio",
+        "exemplo": "Supondo que a entrada seja do tipo (dia discos): 1 100\n2 130\n3 10\n...\nA saída esperada será: 2 130 (dia 2 vendeu 130 discos)",
+        "dica": [
+            "Para simplificar, faça o código pensando que o mês de março tenha 5 dias. Só pra você não ter que escrever os 30 dias.",
+            "Os dias e a quantidade de discos vendidos são anotados sempre. Portanto haverá loop.",
+            "No início do mês, o maior valor de discos vendidos é o do dia 1.",
+            "Uma varíavel de controle, precisa ser criada. O que será verificado é se o número de discos vendidos de um dia X é maior que o valor salvo na variável de controle. Portanto essa variável de controle irá sempre salvar o maior valor e uma outra variável salvará o dia que isso aconteceu.",
+            "O critério de parada é o número de dias do mês. No nosso exemplo, será 5 dias."
+        ]
+    },
+    "Exercício 6": {
+        "description": "Dados n e uma sequência de n números inteiros, determinar a soma dos números pares.",
+        "dificuldade": "Fácil.",
+        "exemplo": "Entrada: 4\nSaída: 6 (1 2 3 4 é a sequência. Os pares são 2 e 4. Soma = 6)",
+        "dica": [
+            "Será lido um número n e, a partir dele, encontrar n números inteiros positivos. Portanto haverá loop.",
+            "Se for dado o número 4, deve-se percorrer os números a partir de 1 até o 4. Nesse caso, ao chegar no 4º número ímpar, o loop quebra.",
+            "Um número é dado como par, se sua divisão por 2 der resto 0.",
+            "Utilize o operador mod.",
+            "O programa irá ter valores acumulados. O número no loop atual se soma ao resultado da soma anterior se ele for par. Portanto uma variável que acumule valores deve existir."
+        ]
+    }
+}

@@ -3,8 +3,10 @@ import discord
 from discord.ext import commands
 import asyncio
 
+import studies
 
-class StudyBot(commands.Cog):
+
+class StudyBot(studies.Common):
     """
 
     """
@@ -16,9 +18,8 @@ class StudyBot(commands.Cog):
     disciplinas_periodos = {}
     disciplinas = {}
 
-    materiais_id = 891355384525234207 #891015271551225886
-    perguntas_id = 891355416167088158 #891015309153153055
-
+    materiais_id = 891015271551225886
+    perguntas_id = 891015309153153055
 
     def __init__(self, bot):
         """
@@ -27,7 +28,6 @@ class StudyBot(commands.Cog):
 
         self.bot = bot
         self.study_channel = None
-
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -38,7 +38,6 @@ class StudyBot(commands.Cog):
         """
 
         #self.get_all_materials_location()
-
 
     def get_materials_location(self, p_dir):
         all_lines = ""
@@ -52,6 +51,7 @@ class StudyBot(commands.Cog):
         aux_d = {}
         disciplinas_periodos = {}
         for line in all_lines:
+            print(line.split(',', 1))
             code, name = line.split(',', 1)
             name = name.replace('\n', '')
 
@@ -70,7 +70,6 @@ class StudyBot(commands.Cog):
         disciplinas_periodos[p_dir] = aux_d
             
         return aux_d
-
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -113,23 +112,6 @@ class StudyBot(commands.Cog):
             #await self.bot.get_channel(channel_id).send(question)
             #await context.message.author.send("Pronto, sua pergunta foi feita no canal <perguntas>")
 
-
-    async def is_in_right_channel(self, context, dm=False):
-        try:
-            m_channel = discord.utils.get(context.guild.channels, name="materiais")
-            if context.channel.id == m_channel.id:
-                q_channel = discord.utils.get(context.guild.channels, name="perguntas")
-                if dm:
-                    return q_channel
-                return True
-            else:
-                await context.send("Eu só converso pelo canal <materiais>. Da uma passada lá ;)")
-                return False
-        except Exception as ex:
-            #dm??
-            return True
-
-
     @commands.command()
     async def dm(self, context):
         """
@@ -147,61 +129,6 @@ class StudyBot(commands.Cog):
             )
         
             await context.message.author.send(embed=embed)
-
-
-    @commands.command()
-    async def help(self, context):
-        """
-            
-        """
-
-        embed = discord.Embed(
-            title="Como usar o bot",
-            description="Comandos funcionando (espero) no momento",
-            colour=context.author.colour,
-        )
-
-        embed.add_field(
-            name="Mandar mensagem privada pra mim",
-            value="```Toda mensagem que você enviar via dm pra mim, será redirecionada ao canal perguntas "+
-            "como uma pergunta de autoria minha. Será totalmente anônima.\n"+
-            "Portanto use com cuidado. Vai falar mal do coleguinha não.\n"+
-            "Se quiser mandar algum código, basta adicioná-lo entre a tag <code>seu código aqui</code> para uma melhor visualização.\n"+
-            "Importante: O código precisa ser a última coisa da mensagem. Tudo após a tag </code> não será processado.\n"+
-            "Exemplo: (Funciona melhor com Pascal e C)\n"+
-            "---INÍCIO DA MENSAGEM---\n\n"+
-            "Pq será q isso não funciona??\n\n"+
-            "<code>\n"+
-            "#include <stdio.h>\n"+
-            "#include <stdlib.h>\n"+
-
-            "int main(int argc, char **argv)\n"+
-            "{\n"+
-            "    resultado = 3/0;\n"+
-            "}\n"+
-            "</code>\n\n"+
-            "---FIM DA MENSAGEM---\n\n\n"+
-            "Além disso, todos os comandos funcionam na dm também. "+
-            "Se não quiser pedir nada no grupo, pode pedir exclusivamente pra mim :3```",
-            inline=False
-        )
-        embed.add_field(
-            name="$dm",
-            value="```Eu envio uma mensagem privada pra você caso você não saiba me enviar uma.```"
-        )
-        embed.add_field(
-            name="$m",
-            value="```Mostra uma lista com os períodos que possuem disciplinas com materiais.```"
-        )
-        embed.add_field(
-            name="$t <periodo> <código disciplina> <identificador do tema>",
-            value="```Mostra os materiais sobre um tema específico. As orientações são dadas durante o comando $m\n"+
-            "Exemplo para material de identificador do tema 1, período 1 e código CI055:\n"+
-            "$t 1 CI055 1```",
-            inline=False
-        )
-    
-        await context.send(embed=embed)
 
     @commands.command()
     async def m(self, context):
@@ -238,7 +165,6 @@ class StudyBot(commands.Cog):
 
             args = [context, number_emojis, used_emojis, sent_message, periodos]
             asyncio.get_event_loop().create_task(self.wait_periodo_reaction(args))
-
 
     async def wait_periodo_reaction(self, args):
         context = args[0]
@@ -285,7 +211,10 @@ class StudyBot(commands.Cog):
 
                     embed = discord.Embed(
                         title="Reaja ao emoji da disciplina para ver os temas",
-                        description="Reaja ao emoji da disciplina para ver os temas"
+                        description="Reaja ao emoji da disciplina para ver os temas.\n"+
+                                    "Para uma experiência mais prática, vá ao canal da disciplina, "+
+                                    "e dê o comando:\n`help`\n para saber o que pode ser feito por lá :D\n"+
+                                    "(Por enquanto temos só para Alg1)"
                     )
                     embed.add_field(name="Disciplinas", value=value, inline=False)
 
@@ -311,7 +240,6 @@ class StudyBot(commands.Cog):
                     pass
                 #acaba com o loop após o timeout
                 break
-
 
     async def wait_disciplina_reaction(self, args):
         context = args[0]
@@ -341,7 +269,7 @@ class StudyBot(commands.Cog):
                 if str(reaction.emoji) in used_emojis:
                     #o indice do emoji escolhido é indice do vetor de periodos
                     code_index = used_emojis.index(str(reaction.emoji))
-                    
+                    print(all_codes[code_index])
                     embed = discord.Embed(
                         title=f"Temas para {all_codes[code_index][1]}",
                         description="Para acessar o tema, complete  o comando a seguir:\n"+
@@ -369,7 +297,6 @@ class StudyBot(commands.Cog):
                     pass
                 #acaba com o loop após o timeout
                 break
-
 
     @commands.command()
     async def t(self, context, *args):

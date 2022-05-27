@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 
 from studies import study
+from studies import alg1
 
 def get_arguments():
     """
@@ -41,6 +42,7 @@ def main(test_env):
     my_bot = commands.Bot(command_prefix=prefix, help_command=None, intents=intents)
 
     my_bot.add_cog(study.StudyBot(my_bot))
+    my_bot.add_cog(alg1.Alg1Bot(my_bot))
 
     my_bot.run(TOKEN)
 

@@ -9,14 +9,14 @@ class Common(commands.Cog):
 
     async def is_in_right_channel(self, context, dm=False):
         try:
-            m_channel = discord.utils.get(context.guild.channels, name="materiais")
+            m_channel = discord.utils.get(context.guild.channels, name="materiais-bot")
             if context.channel.id == m_channel.id:
                 q_channel = discord.utils.get(context.guild.channels, name="perguntas")
                 if dm:
                     return q_channel
                 return True
             else:
-                await context.send("Eu só converso pelo canal <materiais>. Da uma passada lá ;)")
+                await context.send("Eu só converso pelo canal <materiais-bot>. Da uma passada lá ;)")
                 return False
         except Exception as ex:
             #dm??
@@ -66,11 +66,11 @@ class Common(commands.Cog):
         )
         embed.add_field(
             name="$m",
-            value="```Mostra uma lista com os períodos que possuem disciplinas com materiais. Lembrar de estar no canal materiais.```"
+            value="```Mostra uma lista com os períodos que possuem disciplinas com materiais. Lembrar de estar no canal materiais-bot.```"
         )
         embed.add_field(
             name="Gerar exercícios em várias dificuldades (Ainda ta beeem cru. Tem quase nada).\n",
-            value="```Para gerar um exercício, dê o comando (lembrar de estar no canal alg1!!!):\n"+
+            value="```Para gerar um exercício, dê o comando (lembrar de estar no canal alg1. Ainda não existe :D ):\n"+
                 "$gen\n"+
                 "Você verá o enunciado do exercício e um exemplo de entrada/saída.\n"+
                 "Exercícios retirados da apostila:\n"+

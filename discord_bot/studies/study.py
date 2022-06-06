@@ -18,8 +18,8 @@ class StudyBot(studies.Common):
     disciplinas_periodos = {}
     disciplinas = {}
 
-    materiais_id = 891015271551225886
-    perguntas_id = 891015309153153055
+    materiais_id = 983389296423764008 #891015271551225886
+    perguntas_id = 891355416167088158 #891015309153153055
 
     def __init__(self, bot):
         """

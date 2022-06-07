@@ -16,7 +16,7 @@ class Common(commands.Cog):
                     return q_channel
                 return True
             else:
-                await context.send("Eu só converso pelo canal <materiais-bot>. Da uma passada lá ;)")
+                await context.send("Eu só converso pelo canal <materiais>. Da uma passada lá ;)")
                 return False
         except Exception as ex:
             #dm??
@@ -79,12 +79,5 @@ class Common(commands.Cog):
                 "Cópia feita com permissão do Departamento de Ciência da Computação da Universidade de São Paulo.```",
                 inline=False
         )
-        # embed.add_field(
-        #     name="$t <periodo> <código disciplina> <identificador do tema>",
-        #     value="```Mostra os materiais sobre um tema específico. Esse comando é feito durante o comando $m\n"+
-        #     "Exemplo para material de identificador do tema 1, período 1 e código CI055:\n"+
-        #     "$t 1 CI055 1```",
-        #     inline=False
-        # )
         
         await context.send(embed=embed)

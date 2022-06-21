@@ -4,6 +4,7 @@ from discord.ext import commands
 
 from studies import study
 from studies import alg1
+from studies import profs
 
 def get_arguments():
     """
@@ -32,10 +33,9 @@ def main(test_env):
     TOKEN = "ODkwMzUyMjk0ODMzNTc4MDA0.YUujMQ.IsA4kJlgh3P0vg6ya5RFaHxmYtc"
 
     if test_env:
-        print("Ainda sem bot de testes!!")
-        exit()
+        print("Bot para testes")
         prefix = "#"
-        TOKEN = ""
+        TOKEN = "OTg4ODc1NjQ4NzA3NzM1NTgy.GNLxea.2w2UGB5WHuEqnXDEcu_SHWAGAqPz4_pipqTdzU"
     
     intents = discord.Intents.default()
     intents.members = True
@@ -43,6 +43,7 @@ def main(test_env):
 
     my_bot.add_cog(study.StudyBot(my_bot))
     my_bot.add_cog(alg1.Alg1Bot(my_bot))
+    my_bot.add_cog(profs.ProfsBot(my_bot))
 
     my_bot.run(TOKEN)
 
